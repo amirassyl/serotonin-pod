@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Stance Studio - Premium Wellness Design System */
+
+@layer base {
+  :root {
+    --background: 240 5% 96%;
+    --foreground: 240 6% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 6% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 6% 10%;
+
+    --primary: 211 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 240 5% 92%;
+    --secondary-foreground: 240 6% 10%;
+
+    --muted: 240 5% 92%;
+    --muted-foreground: 240 4% 53%;
+
+    --accent: 142 71% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 211 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Custom Stance Studio Colors */
+    --sanctuary-blue: 211 100% 50%;
+    --sage-green: 142 71% 45%;
+    --warm-yellow: 45 93% 58%;
+
+    /* Plutchik Emotion Colors */
+    --emotion-joy: 45 100% 60%;
+    --emotion-joy-light: 45 60% 92%;
+    --emotion-trust: 120 50% 55%;
+    --emotion-trust-light: 120 30% 92%;
+    --emotion-fear: 270 60% 55%;
+    --emotion-fear-light: 270 36% 92%;
+    --emotion-surprise: 195 80% 55%;
+    --emotion-surprise-light: 195 48% 92%;
+    --emotion-sadness: 210 60% 50%;
+    --emotion-sadness-light: 210 36% 92%;
+    --emotion-disgust: 150 40% 45%;
+    --emotion-disgust-light: 150 24% 92%;
+    --emotion-anger: 0 75% 55%;
+    --emotion-anger-light: 0 45% 92%;
+    --emotion-anticipation: 25 90% 55%;
+    --emotion-anticipation-light: 25 54% 92%;
+  }
+
+  .dark {
+    --background: 240 5% 96%;
+    --foreground: 240 6% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 6% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 6% 10%;
+    --primary: 211 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 5% 92%;
+    --secondary-foreground: 240 6% 10%;
+    --muted: 240 5% 92%;
+    --muted-foreground: 240 4% 53%;
+    --accent: 142 71% 45%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 211 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  /* Card with elevated shadow */
+  .card-elevated {
+    @apply bg-card rounded-3xl shadow-md border-0;
+  }
+
+  .card-elevated-hover {
+    @apply transition-all duration-300;
+  }
+
+  .card-elevated-hover:hover {
+    @apply -translate-y-1 shadow-xl;
+  }
+
+  /* Pill container for HUD elements */
+  .pill-container {
+    @apply bg-card/95 backdrop-blur-sm rounded-full px-4 py-2 shadow-sm;
+  }
+
+  /* Clean button styles */
+  .btn-wellness {
+    @apply bg-card rounded-full shadow-md transition-all duration-300;
+  }
+
+  .btn-wellness:hover {
+    @apply shadow-lg -translate-y-0.5;
+  }
+
+  /* Subtle pulse animation for wellness feel */
+  .pulse-gentle {
+    animation: pulse-gentle 3s ease-in-out infinite;
+  }
+
+  @keyframes pulse-gentle {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+}
+
+@layer components {
+  /* Category badge styles */
+  .category-pill {
+    @apply px-3 py-1 rounded-full text-xs font-medium;
+  }
+
+  .category-pill-expansion {
+    background-color: hsl(var(--category-expansion));
+    color: hsl(var(--category-expansion-text));
+  }
+
+  .category-pill-openness {
+    background-color: hsl(var(--category-openness));
+    color: hsl(var(--category-openness-text));
+  }
+
+  .category-pill-stability {
+    background-color: hsl(var(--category-stability));
+    color: hsl(var(--category-stability-text));
+  }
+
+  .category-pill-release {
+    background-color: hsl(var(--category-release));
+    color: hsl(var(--category-release-text));
+  }
+
+  .category-pill-comfort {
+    background-color: hsl(var(--category-comfort));
+    color: hsl(var(--category-comfort-text));
+  }
+}
