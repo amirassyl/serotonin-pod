@@ -31,9 +31,9 @@ TypeScript, React 18, Vite, Tailwind CSS, shadcn/ui, Framer Motion, Three.js wit
 
 ## How it was built
 
-The app was built in [Lovable](https://lovable.dev), an AI app builder: the code was generated and revised through prompts, and I directed the build, tested each iteration in the browser and with the team, and decided what to change next. I am stating this plainly because most of the code in this repository was written by the tool, not typed by hand.
+I built the app with [Lovable](https://lovable.dev), an AI development tool, over many rounds of prompting, testing and revision. The tool wrote code quickly; the work was deciding what it should build and checking that it did: translating the team's visitor flow into screens and states, shaping how pose tracking, scoring and the voice guide fit together, testing each iteration in the browser with a camera and microphone, and reworking whatever broke or felt wrong until the experience held together well enough to hand to the museum.
 
-Changes made when publishing this repository: API identifiers moved to environment variables, and unit tests added for the alignment score.
+When publishing this repository I moved API identifiers into environment variables and added unit tests for the alignment score.
 
 ## Run it locally
 
