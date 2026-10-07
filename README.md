@@ -13,21 +13,21 @@ The prototype was delivered to the Exploratorium for internal review. It has not
 ## How it works
 
 1. **Intro** – a field of drifting clouds and a voice guide that welcomes the visitor.
-2. **Feeling wheel** – eight core emotions, each opening into more specific ones (35 in total).
-3. **Pose studio** – the camera tracks the visitor's body and draws a "ghost" mannequin of the target pose over the video. An alignment score shows how closely the visitor matches it, and a timer runs while they hold it.
-4. **Breathing studio** – a pulsing orb paces a box-breathing exercise while the voice guide talks the visitor through it.
+2. **Feeling wheel** – eight core emotions, each opening into three more specific ones (24 in total). The visitor can pick by voice or by tapping.
+3. **Pose studio** (all emotions except the Fear family) – the camera tracks the visitor's body and draws a glowing "ghost" mannequin of the target pose next to their own skeleton. The skeleton changes color as the two line up, and a short hold timer fills once the match is close. Each session runs two one-minute poses.
+4. **Breathing studio** (the Fear family) – instead of a pose, a pulsing orb paces a two-minute box-breathing exercise while the voice guide talks the visitor through it.
 
 ### The technical core
 
 - **Pose tracking:** MediaPipe Pose runs in the browser and returns 33 body landmarks per frame (`src/hooks/usePoseDetection.ts`).
 - **Alignment score:** for ten key joints, the distance between the detected landmark and the target pose is turned into a 0–100 score; joints the camera cannot see are skipped (`calculateAlignmentScore`, same file).
-- **Voice:** three ElevenLabs conversational agents, one per stage, are started from the front end and sent context updates as the visitor moves between poses.
+- **Voice:** three ElevenLabs conversational agents, one per stage. The agents can call functions in the browser: the intro agent selects the emotion the visitor names, and the pose agent can ask for the live alignment score.
+- **Overlay:** both skeletons are drawn with Three.js (React Three Fiber) on a transparent canvas over the video, with smoothing between frames.
 - **Session flow:** `src/components/Studio/Studio.tsx` holds the state machine that coordinates camera, voice, timers and the pose swap.
-- **Breathing guide text:** a Supabase edge function streams responses from an LLM (`supabase/functions/meditation-guide`).
 
 ## Stack
 
-TypeScript, React 18, Vite, Tailwind CSS, shadcn/ui, Framer Motion, MediaPipe Pose, ElevenLabs React SDK, Supabase edge functions, Vitest.
+TypeScript, React 18, Vite, Tailwind CSS, shadcn/ui, Framer Motion, Three.js with React Three Fiber, MediaPipe Pose, ElevenLabs React SDK, Vitest.
 
 ## How it was built
 
@@ -39,7 +39,7 @@ Changes made when publishing this repository: API identifiers moved to environme
 
 ```sh
 npm install
-cp .env.example .env   # fill in Supabase and ElevenLabs values
+cp .env.example .env   # fill in the ElevenLabs agent IDs
 npm run dev
 ```
 
@@ -56,4 +56,5 @@ npm run build
 
 - A prototype: tested by the team, not with museum visitors.
 - Pose targets are hand-set coordinates for a front-facing camera; they are not calibrated for body size or distance.
-- The voice agents and the edge function need accounts that are not included here.
+- The voice agents need an ElevenLabs account that is not included here.
+- Some earlier experiments remain in the code but are not used by the current flow: a pose gallery, a score dial and a text-based breathing guide (`supabase/functions/meditation-guide`).
